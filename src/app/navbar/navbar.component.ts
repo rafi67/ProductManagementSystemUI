@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/authentication/auth.service';
@@ -11,6 +11,9 @@ import { AddCategoryDialogComponent } from '../add-category-dialog/add-category-
 import { AppComponent } from '../app.component';
 import { CredentialDialogComponent } from '../credential-dialog/credential-dialog.component';
 import { EditPersonalInfoDialogComponent } from '../edit-personal-info-dialog/edit-personal-info-dialog.component';
+import { DashBoardComponent } from '../dash-board/dash-board.component';
+import { UserComponent } from '../user/user.component';
+import { ProductDetailsComponent } from '../product-details/product-details.component';
 
 @Component({
   selector: 'app-navbar',
@@ -34,7 +37,7 @@ export class NavbarComponent implements OnInit {
 
 
   constructor(private jwtHelper: JwtHelper, private router: Router, private authService: AuthService,
-    private appComponent: AppComponent,
+    private appComponent: AppComponent, private container: ViewContainerRef,
     private dialog: MatDialog, private sharedData: UserData, private userServices: UsersService) {}
 
   ngOnInit(): void {
@@ -83,6 +86,21 @@ export class NavbarComponent implements OnInit {
       next: () => this.logout(),
       error: () => alert('failed to delete your account'),
     });
+  }
+
+  dashBoard() {
+    this.container.clear();
+    this.container.createComponent(DashBoardComponent);
+  }
+
+  userDetails() {
+    this.container.clear();
+    this.container.createComponent(UserComponent);
+  }
+
+  productDetails() {
+    this.container.clear();
+    this.container.createComponent(ProductDetailsComponent);
   }
 
 }

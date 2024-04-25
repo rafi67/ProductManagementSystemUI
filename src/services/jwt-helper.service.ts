@@ -12,7 +12,7 @@ export class JwtHelper {
     localStorage.setItem('access_token', token);
   }
 
-  public getToken() : string | null {
+  public getToken() {
     return localStorage.getItem('access_token');
   }
 

@@ -48,7 +48,7 @@ export class LoginComponent implements OnInit {
         if(res.message=='Successfully Login') {
           this.appComponent.token = res.token;
           this.jwtHelper.setToken(res.token);
-          this.router.navigate(['/DashBoard']);
+          this.router.navigate(['/NavBar']);
         }
       },
       error: () => alert('wrong username or password'),
